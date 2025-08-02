@@ -1,0 +1,35 @@
+{
+  "appId": "com.apartment.maintenance.register",
+  "productName": "Apartment Maintenance Register",
+  "directories": {
+    "output": "dist-electron"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*",
+    "node_modules/**/*"
+  ],
+  "extraMetadata": {
+    "main": "electron/main.js"
+  },
+  "win": {
+    "target": "nsis",
+    "icon": "public/favicon.ico",
+    "requestedExecutionLevel": "asInvoker"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true
+  },
+  "mac": {
+    "category": "public.app-category.productivity",
+    "icon": "public/favicon.ico"
+  },
+  "linux": {
+    "target": "AppImage",
+    "icon": "public/favicon.ico",
+    "category": "Office"
+  }
+}
