@@ -37,7 +37,7 @@ interface Expense {
 }
 
 const MaintenanceTracker = () => {
-  const [monthlyCharge] = useState(100);
+  const [monthlyCharge] = useState(2000);
   const [currentTab, setCurrentTab] = useState("dashboard");
   
   // Sample data
@@ -52,17 +52,17 @@ const MaintenanceTracker = () => {
   ]);
 
   const [payments] = useState<Payment[]>([
-    { id: "1", flatNumber: "Flat 1", month: "January", year: "2024", datePaid: "2024-01-05", amountPaid: 100, paymentMethod: "Bank Transfer" },
-    { id: "2", flatNumber: "Flat 2", month: "January", year: "2024", datePaid: "2024-01-03", amountPaid: 100, paymentMethod: "Cash" },
-    { id: "3", flatNumber: "Flat 3", month: "January", year: "2024", datePaid: "2024-01-10", amountPaid: 100, paymentMethod: "Cash" },
-    { id: "4", flatNumber: "Flat 1", month: "February", year: "2024", datePaid: "2024-02-05", amountPaid: 100, paymentMethod: "Bank Transfer" },
-    { id: "5", flatNumber: "Flat 2", month: "February", year: "2024", datePaid: "2024-02-03", amountPaid: 100, paymentMethod: "Cash" },
+    { id: "1", flatNumber: "Flat 1", month: "January", year: "2024", datePaid: "2024-01-05", amountPaid: 2000, paymentMethod: "Bank Transfer" },
+    { id: "2", flatNumber: "Flat 2", month: "January", year: "2024", datePaid: "2024-01-03", amountPaid: 2000, paymentMethod: "Cash" },
+    { id: "3", flatNumber: "Flat 3", month: "January", year: "2024", datePaid: "2024-01-10", amountPaid: 2000, paymentMethod: "Cash" },
+    { id: "4", flatNumber: "Flat 1", month: "February", year: "2024", datePaid: "2024-02-05", amountPaid: 2000, paymentMethod: "Bank Transfer" },
+    { id: "5", flatNumber: "Flat 2", month: "February", year: "2024", datePaid: "2024-02-03", amountPaid: 2000, paymentMethod: "Cash" },
   ]);
 
   const [expenses] = useState<Expense[]>([
-    { id: "1", date: "2024-01-15", description: "Elevator maintenance", totalCost: 350, vendor: "ElevoTech", paidBy: "Flat 5", splitType: "equal" },
-    { id: "2", date: "2024-01-20", description: "Common area cleaning supplies", totalCost: 140, vendor: "CleanCorp", paidBy: "Building Fund", splitType: "equal" },
-    { id: "3", date: "2024-02-10", description: "Plumbing repair", totalCost: 280, vendor: "PlumbPro", paidBy: "Flat 3", splitType: "equal" },
+    { id: "1", date: "2024-01-15", description: "Elevator maintenance", totalCost: 7000, vendor: "ElevoTech", paidBy: "Flat 5", splitType: "equal" },
+    { id: "2", date: "2024-01-20", description: "Common area cleaning supplies", totalCost: 2800, vendor: "CleanCorp", paidBy: "Building Fund", splitType: "equal" },
+    { id: "3", date: "2024-02-10", description: "Plumbing repair", totalCost: 5600, vendor: "PlumbPro", paidBy: "Flat 3", splitType: "equal" },
   ]);
 
   const getPaymentStatus = (flatNumber: string, month: string, year: string) => {
@@ -138,7 +138,7 @@ const MaintenanceTracker = () => {
                   <DollarSign className="h-4 w-4 text-success" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-success">${getTotalCollected()}</div>
+                  <div className="text-2xl font-bold text-success">₹{getTotalCollected()}</div>
                   <p className="text-xs text-muted-foreground">From all payments</p>
                 </CardContent>
               </Card>
@@ -148,7 +148,7 @@ const MaintenanceTracker = () => {
                   <CalendarDays className="h-4 w-4 text-destructive" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-destructive">${getTotalExpenses()}</div>
+                  <div className="text-2xl font-bold text-destructive">₹{getTotalExpenses()}</div>
                   <p className="text-xs text-muted-foreground">All building expenses</p>
                 </CardContent>
               </Card>
@@ -159,7 +159,7 @@ const MaintenanceTracker = () => {
                 </CardHeader>
                 <CardContent>
                   <div className={`text-2xl font-bold ${getNetBalance() >= 0 ? 'text-success' : 'text-destructive'}`}>
-                    ${getNetBalance()}
+                    ₹{getNetBalance()}
                   </div>
                   <p className="text-xs text-muted-foreground">Receipts - Expenses</p>
                 </CardContent>
@@ -274,7 +274,7 @@ const MaintenanceTracker = () => {
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">Monthly Payments</h2>
               <div className="flex items-center gap-4">
-                <Label>Monthly Charge: ${monthlyCharge}</Label>
+                <Label>Monthly Charge: ₹{monthlyCharge}</Label>
                 <Button>Add Payment</Button>
               </div>
             </div>
@@ -298,7 +298,7 @@ const MaintenanceTracker = () => {
                         <TableCell className="font-medium">{payment.flatNumber}</TableCell>
                         <TableCell>{payment.month} {payment.year}</TableCell>
                         <TableCell>{payment.datePaid}</TableCell>
-                        <TableCell>${payment.amountPaid}</TableCell>
+                        <TableCell>₹{payment.amountPaid}</TableCell>
                         <TableCell>{payment.paymentMethod}</TableCell>
                         <TableCell>
                           <Badge className="bg-success text-success-foreground">Paid</Badge>
@@ -336,10 +336,10 @@ const MaintenanceTracker = () => {
                       <TableRow key={expense.id}>
                         <TableCell>{expense.date}</TableCell>
                         <TableCell className="font-medium">{expense.description}</TableCell>
-                        <TableCell>${expense.totalCost}</TableCell>
+                        <TableCell>₹{expense.totalCost}</TableCell>
                         <TableCell>{expense.vendor}</TableCell>
                         <TableCell>{expense.paidBy}</TableCell>
-                        <TableCell>${(expense.totalCost / 7).toFixed(2)}</TableCell>
+                        <TableCell>₹{(expense.totalCost / 7).toFixed(2)}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -358,18 +358,18 @@ const MaintenanceTracker = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="p-4 bg-success-light rounded-lg">
                     <h3 className="font-semibold text-success">Total Income</h3>
-                    <p className="text-2xl font-bold text-success">${getTotalCollected()}</p>
+                    <p className="text-2xl font-bold text-success">₹{getTotalCollected()}</p>
                   </div>
                   <div className="p-4 bg-warning-light rounded-lg">
                     <h3 className="font-semibold text-warning">Total Expenses</h3>
-                    <p className="text-2xl font-bold text-warning">${getTotalExpenses()}</p>
+                    <p className="text-2xl font-bold text-warning">₹{getTotalExpenses()}</p>
                   </div>
                   <div className={`p-4 rounded-lg ${getNetBalance() >= 0 ? 'bg-success-light' : 'bg-destructive/10'}`}>
                     <h3 className={`font-semibold ${getNetBalance() >= 0 ? 'text-success' : 'text-destructive'}`}>
                       Net Balance
                     </h3>
                     <p className={`text-2xl font-bold ${getNetBalance() >= 0 ? 'text-success' : 'text-destructive'}`}>
-                      ${getNetBalance()}
+                      ₹{getNetBalance()}
                     </p>
                   </div>
                 </div>
