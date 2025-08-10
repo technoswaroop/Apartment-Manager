@@ -1,73 +1,43 @@
-# Welcome to your Lovable project
+# Apartment Manager (WPF + SQLite)
 
-## Project info
+A Windows desktop application for managing apartment expenses across 7 flats: maintenance, repairs, defaulters, and financial reporting in INR.
 
-**URL**: https://lovable.dev/projects/659d0941-680f-4e7a-9ac0-d08dbffff790
+## Projects
+- `src/Core` — domain models
+- `src/Data` — EF Core (SQLite) DbContext and services
+- `src/Wpf` — WPF app (net8.0-windows)
+- `tests` — unit tests
 
-## How can I edit this code?
+## Build
+- Windows 10/11 with .NET 8 SDK and Visual Studio 2022 (Desktop development with C#)
+- Open `ApartmentManager.sln` and set `ApartmentManager.Wpf` as startup project
+- Build and run
 
-There are several ways of editing your application.
+## First Run
+- DB file: `%LOCALAPPDATA%\ApartmentManager\apartment.db`
+- App seeds 7 flats `F1..F7`
 
-**Use Lovable**
+## Packaging
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/659d0941-680f-4e7a-9ac0-d08dbffff790) and start prompting.
+### Option A: MSIX Packaging (Visual Studio)
+1. In VS, add Windows App Packaging Project (MSIX) targeting `ApartmentManager.Wpf`
+2. Configure Publisher, signing (or developer certificate)
+3. Build MSIX package; install on Windows 10/11
 
-Changes made via Lovable will be committed automatically to this repo.
+### Option B: Inno Setup (MSI-like Installer)
+1. Install Inno Setup
+2. Use the provided `installer\InnoSetup.iss` script
+3. Build installer; run `Setup-ApartmentManager.exe`
 
-**Use your preferred IDE**
+## Features
+- Maintenance setup and payments
+- Repair expense allocation (equal across 7 flats)
+- Automatic credit to payer
+- Defaulter list and CSV export
+- Financial reports (Balance Sheet, Income, Cash Flow) CSV export
+- INR formatting, backup/restore
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## Tests
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/659d0941-680f-4e7a-9ac0-d08dbffff790) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+dotnet test ApartmentManager.sln
+```

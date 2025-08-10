@@ -1,0 +1,98 @@
+<Window x:Class="ApartmentManager.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Apartment Manager" Height="720" Width="1200">
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="Ready" />
+        </StatusBar>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <TextBlock Text="Dashboard" FontSize="20" FontWeight="Bold" />
+                <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                    <Border Background="#DFF2E0" Padding="6" CornerRadius="4" Margin="5"><TextBlock Text="Paid" Foreground="#2E7D32"/></Border>
+                    <Border Background="#FFF9C4" Padding="6" CornerRadius="4" Margin="5"><TextBlock Text="Partial" Foreground="#8D6E00"/></Border>
+                    <Border Background="#FFCDD2" Padding="6" CornerRadius="4" Margin="5"><TextBlock Text="Overdue" Foreground="#B71C1C"/></Border>
+                </StackPanel>
+            </StackPanel>
+            <TabControl Grid.Row="1" Margin="10">
+                <TabItem Header="Overview">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid x:Name="MaintenanceGrid" AutoGenerateColumns="False" Margin="0,0,10,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Flat" Binding="{Binding Flat.FlatNumber}" Width="80"/>
+                                <DataGridTextColumn Header="Owner" Binding="{Binding Flat.OwnerName}" Width="200"/>
+                                <DataGridTextColumn Header="Month" Binding="{Binding Month}" Width="70"/>
+                                <DataGridTextColumn Header="Year" Binding="{Binding Year}" Width="80"/>
+                                <DataGridTextColumn Header="Standard" Binding="{Binding StandardAmount}" Width="100"/>
+                                <DataGridTextColumn Header="Adjusted" Binding="{Binding AdjustedAmount}" Width="100"/>
+                                <DataGridTextColumn Header="Paid" Binding="{Binding PaidAmount}" Width="100"/>
+                                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Grid.Column="1">
+                            <GroupBox Header="Key Metrics" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock x:Name="TotalCollectedText" Text="Total Collected: ₹0.00" Margin="5"/>
+                                    <TextBlock x:Name="TotalPendingText" Text="Total Pending: ₹0.00" Margin="5"/>
+                                    <TextBlock x:Name="DefaultersText" Text="Defaulters: 0" Margin="5"/>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Quick Actions">
+                                <StackPanel>
+                                    <Button x:Name="BtnSetMaintenance" Content="Set Monthly Maintenance" Margin="5" Height="32"/>
+                                    <Button x:Name="BtnRecordPayment" Content="Record Payment" Margin="5" Height="32"/>
+                                    <Button x:Name="BtnExportReport" Content="Export Report (CSV)" Margin="5" Height="32"/>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Repairs">
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Add Repair Expense" FontWeight="Bold"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <TextBox x:Name="RepairDescription" Width="300" Margin="0,0,10,0" PlaceholderText="Description"/>
+                            <TextBox x:Name="RepairAmount" Width="120" Margin="0,0,10,0"/>
+                            <ComboBox x:Name="PaidByFlatCombo" Width="150"/>
+                            <Button x:Name="BtnAddRepair" Content="Add & Allocate" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Defaulters">
+                    <Grid>
+                        <DataGrid x:Name="DefaultersGrid" AutoGenerateColumns="False" Margin="10">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Flat" Binding="{Binding FlatNumber}" Width="100"/>
+                                <DataGridTextColumn Header="Owner" Binding="{Binding OwnerName}" Width="200"/>
+                                <DataGridTextColumn Header="Outstanding" Binding="{Binding OutstandingAmount}" Width="120"/>
+                                <DataGridTextColumn Header="Months" Binding="{Binding PendingMonths}" Width="80"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Reports">
+                    <StackPanel Margin="10">
+                        <Button x:Name="BtnExportBalanceSheet" Content="Export Balance Sheet (CSV)" Margin="5" Height="32"/>
+                        <Button x:Name="BtnExportIncome" Content="Export Income Statement (CSV)" Margin="5" Height="32"/>
+                        <Button x:Name="BtnExportCashFlow" Content="Export Cash Flow (CSV)" Margin="5" Height="32"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Backup">
+                    <StackPanel Margin="10">
+                        <Button x:Name="BtnCreateBackup" Content="Create Backup" Margin="5" Height="32"/>
+                        <Button x:Name="BtnRestoreBackup" Content="Restore Backup" Margin="5" Height="32"/>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+</Window>
