@@ -1,0 +1,12 @@
+/workspace/src/Core/bin/Debug/net8.0/ApartmentManager.Core.deps.json
+/workspace/src/Core/bin/Debug/net8.0/ApartmentManager.Core.dll
+/workspace/src/Core/bin/Debug/net8.0/ApartmentManager.Core.pdb
+/workspace/src/Core/obj/Debug/net8.0/ApartmentManager.Core.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/src/Core/obj/Debug/net8.0/ApartmentManager.Core.AssemblyInfoInputs.cache
+/workspace/src/Core/obj/Debug/net8.0/ApartmentManager.Core.AssemblyInfo.cs
+/workspace/src/Core/obj/Debug/net8.0/ApartmentManager.Core.csproj.CoreCompileInputs.cache
+/workspace/src/Core/obj/Debug/net8.0/ApartmentManager.Core.sourcelink.json
+/workspace/src/Core/obj/Debug/net8.0/ApartmentManager.Core.dll
+/workspace/src/Core/obj/Debug/net8.0/refint/ApartmentManager.Core.dll
+/workspace/src/Core/obj/Debug/net8.0/ApartmentManager.Core.pdb
+/workspace/src/Core/obj/Debug/net8.0/ref/ApartmentManager.Core.dll
